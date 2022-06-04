@@ -32,3 +32,8 @@ nav ul .links {
 nav ul .links a {
   margin: 0.5em;
 }
+
+.grey-li {
+  color: grey;
+  cursor: pointer;
+}

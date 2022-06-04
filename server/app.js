@@ -1,38 +1,27 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const stytchConnection = require('./db/stytchConnection');
+const authRoutes = require('./routes/authRoutes');
+const notesRoutes = require('./routes/notesRoutes');
+const verifyToken = require('./middleware/verifyToken');
 require('dotenv').config();
 
 const app = express();
-const client = stytchConnection();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['POST', 'GET', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true,
+  })
+);
 app.use(morgan('dev'));
-
-app.get('/', (req, res) => {
-  res.json({ msg: 'Hello World' });
-});
-
-app.post('/send-email', async (req, res) => {
-  try {
-    const { email } = req.body;
-    const params = { email };
-    const response = await client.otps.email.loginOrCreate(params);
-    res.json(response);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-app.post('/verify-otp', async (req, res) => {
-  try {
-  } catch (error) {
-    console.log(error);
-  }
-});
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use('/', authRoutes);
+app.use('/', verifyToken, notesRoutes);
 
 const PORT = process.env.PORT || 6000;
 

@@ -1,8 +1,22 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import HomeIcon from '@mui/icons-material/Home';
 import '../styles/Navbar.css';
 
 function Navbar() {
+  const navigate = useNavigate();
+  const logout = () => {
+    try {
+      const response = axios.delete('http://localhost:4000/logout', {
+        withCredentials: true,
+      });
+      console.log(response.data);
+      navigate('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <header>
       <nav>
@@ -21,8 +35,8 @@ function Navbar() {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            <li>
-              <Link to="/logout">Logout</Link>
+            <li onClick={logout} className="grey-li">
+              Logout
             </li>
           </div>
         </ul>

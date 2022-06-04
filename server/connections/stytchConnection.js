@@ -1,4 +1,5 @@
 const stytch = require('stytch');
+require('dotenv').config();
 
 const stytchConnection = () => {
   return new stytch.Client({
