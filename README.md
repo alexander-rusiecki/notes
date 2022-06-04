@@ -9,6 +9,7 @@
 - React
 - Axios
 - Draft-js
+- Material UI - Icons
 
 ### Backend
 
