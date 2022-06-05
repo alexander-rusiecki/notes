@@ -6,15 +6,14 @@ import '../styles/Navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
-  const logout = () => {
+  const logout = async () => {
     try {
-      const response = axios.delete('http://localhost:4000/logout', {
+      await axios.delete('http://localhost:4000/api/v1/auth/logout', {
         withCredentials: true,
       });
-      console.log(response.data);
       navigate('/');
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
   return (

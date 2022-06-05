@@ -8,10 +8,9 @@ const verifyToken = async (req, res, next) => {
       session_token: session_token,
     });
     req.user_id = response.session.user_id;
-    console.log(response);
     next();
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 

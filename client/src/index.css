@@ -25,3 +25,25 @@ main {
 button {
   cursor: pointer;
 }
+
+button:hover {
+  background-color: rgb(207, 207, 207);
+}
+
+input:focus {
+  outline: none;
+}
+
+.error-message {
+  height: 5em;
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+button {
+  padding: 0.5em 2em;
+  border-radius: 0.3em;
+}

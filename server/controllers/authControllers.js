@@ -6,10 +6,10 @@ const sendEmail = async (req, res) => {
   try {
     const { email } = req.body;
     const params = { email };
-    const response = await client.otps.email.loginOrCreate(params);
+    const response = await client.otps.email.send(params);
     res.json(response);
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 
@@ -28,21 +28,20 @@ const verifyEmail = async (req, res) => {
       signed: true,
       maxAge: 15 * 24 * 60 * 60 * 1000,
     });
-    console.log(response);
     res.json({ user_id });
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 
 const deleteToken = async (req, res) => {
   try {
     const session_token = req.signedCookies['x-stytch-session-token'];
-    const response = await client.sessions.revoke({ session_token });
+    await client.sessions.revoke({ session_token });
     res.clearCookie('x-stytch-session-token');
-    res.sendStatus(204).send();
+    res.json({ msg: 'Token deleted' });
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 

@@ -20,8 +20,8 @@ app.use(
 );
 app.use(morgan('dev'));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use('/', authRoutes);
-app.use('/', verifyToken, notesRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1', verifyToken, notesRoutes);
 
 const PORT = process.env.PORT || 6000;
 
