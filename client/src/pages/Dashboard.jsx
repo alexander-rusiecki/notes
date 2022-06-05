@@ -6,6 +6,7 @@ import '../styles/Dashboard.css';
 function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const getAllNotes = async () => {
     setIsLoading(true);
@@ -16,8 +17,14 @@ function Dashboard() {
           withCredentials: true,
         }
       );
-      setNotes(response.data);
-      setIsLoading(false);
+      if (response.data.msg?.error_type === 'session_not_found') {
+        setAuthenticated(false);
+        setIsLoading(false);
+      } else {
+        setAuthenticated(true);
+        setIsLoading(false);
+        setNotes(response.data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +41,15 @@ function Dashboard() {
       </div>
     );
   }
+
+  if (!authenticated) {
+    return (
+      <div className="loading">
+        <h1>You are not authorized</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
