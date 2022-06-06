@@ -1,9 +1,11 @@
-function Note({ title, body }) {
+import { Link } from 'react-router-dom';
+
+function Note({ id, title, body }) {
   return (
-    <div>
+    <Link to={`/notes/${id}`}>
       <h3>{title}</h3>
       <p>{body}</p>
-    </div>
+    </Link>
   );
 }
 

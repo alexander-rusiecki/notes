@@ -46,6 +46,20 @@ const updateNote = async (req, res) => {
   }
 };
 
+const getNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const note = await prisma.note.findUnique({
+      where: {
+        id: Number(id),
+      },
+    });
+    res.json(note);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteNote = async (req, res) => {
   try {
     const { id } = req.params;
@@ -60,4 +74,4 @@ const deleteNote = async (req, res) => {
   }
 };
 
-module.exports = { getAllNotes, createNote, updateNote, deleteNote };
+module.exports = { getAllNotes, createNote, updateNote, getNote, deleteNote };

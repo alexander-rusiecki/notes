@@ -43,7 +43,7 @@ function Login() {
         { method_id, code },
         { withCredentials: true }
       );
-      navigate('/dashboard');
+      navigate('/notes');
     } catch (error) {
       setErrorMsg(error.message.msg.error_message);
     }

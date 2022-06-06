@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import SingleNote from './pages/SingleNote';
 import Logout from './pages/Logout';
 import Footer from './components/Footer';
 
@@ -13,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/notes" element={<Dashboard />} />
+        <Route path="/notes/:id" element={<SingleNote />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
       <Footer />

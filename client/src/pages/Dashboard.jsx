@@ -73,7 +73,7 @@ function Dashboard() {
       <div className="notes-container">
         {notes &&
           notes.map(note => (
-            <div>
+            <div key={note.id}>
               <Note {...note} />
             </div>
           ))}

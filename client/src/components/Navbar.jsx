@@ -32,7 +32,7 @@ function Navbar() {
               <Link to="/login">Login</Link>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/notes">Dashboard</Link>
             </li>
             <li onClick={logout} className="grey-li">
               Logout
