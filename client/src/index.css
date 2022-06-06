@@ -47,3 +47,16 @@ button {
   padding: 0.5em 2em;
   border-radius: 0.3em;
 }
+
+.note-card {
+  display: grid;
+  place-content: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 1em;
+  width: 100%;
+  height: 100%;
+}
+.note-card a {
+  text-decoration: none;
+}
