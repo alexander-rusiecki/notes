@@ -17,8 +17,6 @@ const createNote = async (req, res) => {
       data: {
         title,
         body,
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     });
     res.json(newNote);
