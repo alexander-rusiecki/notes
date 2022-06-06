@@ -1,5 +1,15 @@
 .dashboard-container {
   min-height: 80vh;
+  text-align: center;
+}
+
+.notes-container {
+  margin-top: 4em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  justify-items: center;
+  align-items: center;
 }
 
 .loading {
