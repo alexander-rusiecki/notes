@@ -64,27 +64,46 @@ function Dashboard() {
 
   if (isLoading) {
     return (
-      <div className="loading">
+      <main className="loading">
         <HourglassTopTwoToneIcon />
-      </div>
+      </main>
     );
   }
 
   if (!authenticated) {
     return (
-      <div className="loading">
-        <h1>You are not authorized</h1>
-      </div>
+      <main className="loading">
+        <h1>You are not authorized 🔐</h1>
+      </main>
     );
   }
 
   return (
     <main className="dashboard-container">
-      <h1>Dashboard</h1>
+      <h2>Dashboard</h2>
+      <>
+        {!isEditing ? (
+          <AddCircleTwoToneIcon
+            style={{ color: '#2c5784', marginTop: '1em' }}
+            onClick={() => setIsEditing(!isEditing)}
+          />
+        ) : (
+          <RemoveCircleTwoToneIcon
+            style={{ color: '#2c5784', marginTop: '1em' }}
+            onClick={() => setIsEditing(!isEditing)}
+          />
+        )}
+      </>
       {isEditing && (
         <>
           <form>
-            <input type="text" value={title} onChange={handleTitleChange} />
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+            />
           </form>
           <Editor
             apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
@@ -96,13 +115,7 @@ function Dashboard() {
           <button onClick={addNote}>Add note</button>
         </>
       )}
-      <>
-        {!isEditing ? (
-          <AddCircleTwoToneIcon onClick={() => setIsEditing(!isEditing)} />
-        ) : (
-          <RemoveCircleTwoToneIcon onClick={() => setIsEditing(!isEditing)} />
-        )}
-      </>
+
       <div className="notes-container">
         {notes &&
           notes.map(note => (

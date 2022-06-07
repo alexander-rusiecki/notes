@@ -21,7 +21,8 @@ function SingleNote() {
 
   const handleTitleChange = e => {
     e.preventDefault();
-    setTitle(e.target.value);
+    setNote({ ...note, title: e.target.value });
+    // setTitle(e.target.value);
   };
 
   const updateNote = async e => {
@@ -30,7 +31,7 @@ function SingleNote() {
       const content = editorRef.current.getContent();
       try {
         const response = await axios.put(
-          'http://localhost:4000/api/v1/notes',
+          `http://localhost:4000/api/v1/notes/${id}`,
           { title, body: content },
           { withCredentials: true }
         );
@@ -76,43 +77,53 @@ function SingleNote() {
 
   useEffect(() => {
     getNote();
+    setTitle(note?.title);
   }, []);
 
   if (isLoading) {
     return (
-      <div className="loading">
+      <main className="loading">
         <HourglassTopTwoToneIcon />
-      </div>
+      </main>
     );
   }
 
   if (!authenticated) {
     return (
-      <div className="loading">
+      <main className="loading">
         <h1>You are not authorized</h1>
-      </div>
+      </main>
     );
   }
 
   return (
     <main className="single-note-container">
+      <h2>Read, edit or delete note</h2>
       <>
         {!isEditing ? (
-          <AddCircleTwoToneIcon onClick={() => setIsEditing(!isEditing)} />
+          <AddCircleTwoToneIcon
+            style={{ color: '#2c5784', marginTop: '1em' }}
+            onClick={() => setIsEditing(!isEditing)}
+          />
         ) : (
-          <RemoveCircleTwoToneIcon onClick={() => setIsEditing(!isEditing)} />
+          <RemoveCircleTwoToneIcon
+            style={{ color: '#2c5784', marginTop: '1em' }}
+            onClick={() => setIsEditing(!isEditing)}
+          />
         )}
       </>
       {note && !isEditing ? (
-        <>
-          <h1>{note.title}</h1>
+        <div className="single-note-card">
+          <h2>{note.title}</h2>
           {parse(note.body)}
           <DeleteIcon onClick={handleDelete} />
-        </>
+        </div>
       ) : (
         <>
           <form>
+            <label htmlFor="title">Title</label>
             <input
+              id="title"
               type="text"
               value={note.title}
               onChange={handleTitleChange}

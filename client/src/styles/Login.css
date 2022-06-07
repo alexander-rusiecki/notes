@@ -17,10 +17,25 @@
 }
 
 .login-container form input {
-  padding: 0.6em 1.2em;
+  padding: 0.8em 1.2em;
   border: none;
   border-radius: 2px;
   font-weight: bold;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #efeeee;
+  color: rgb(88, 88, 88);
+  width: 50%;
+}
+
+.login-container h2 {
+  font-weight: 400;
+  color: rgb(10, 10, 10);
+}
+
+.login-container span {
+  font-weight: 700;
+  color: rgb(10, 10, 10);
+}
+
+.login-container button:hover {
+  background-color: #24486e;
 }

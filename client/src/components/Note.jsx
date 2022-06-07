@@ -1,8 +1,10 @@
 function Note({ title, createdAt }) {
   return (
     <div>
-      <h3>{title}</h3>
-      <small className="created-at">created: {createdAt}</small>
+      <h2>{title}</h2>
+      <small className="created-at">
+        created: {createdAt.toString().substring(0, 10)}
+      </small>
     </div>
   );
 }

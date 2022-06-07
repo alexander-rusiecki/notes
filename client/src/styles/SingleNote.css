@@ -1,6 +1,59 @@
 .single-note-container {
+  min-height: 80vh;
+  padding: 4em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.single-note-container h2 {
+  font-weight: 400;
+  color: rgb(10, 10, 10);
+}
+
+.single-note-card {
+  background-color: white;
+  margin-top: 2em;
+  border-radius: 3px;
+  padding: 1em;
+  width: 50%;
+  position: relative;
+}
+.single-note-container form {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.single-note-container label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.single-note-container form input {
+  padding: 0.8em 1.2em;
+  border: none;
+  border-radius: 2px;
+  font-weight: bold;
+  background-color: #efeeee;
+  color: rgb(88, 88, 88);
+  min-width: 80%;
+}
+
+.single-note-container button {
+  margin-top: 2em;
+  width: 30%;
+}
+
+.single-note-container button:hover {
+  background-color: #24486e;
+}
+
+.single-note-card svg {
+  position: absolute;
+  right: 0.1em;
+  bottom: 0.1em;
+}
+.single-note-card svg:hover {
+  color: rgb(244, 59, 59);
 }

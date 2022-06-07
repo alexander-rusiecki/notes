@@ -55,15 +55,15 @@ function Login() {
         <form onSubmit={requestOTP}>
           <h2>Login</h2>
           <p>
-            Please use your email to get{' '}
-            <span className="bold">One Time Password</span> for login
+            Please enter your email to get a<span> One Time Password</span> to
+            login
           </p>
           <input
             type="email"
             id="email"
             name="email"
             value={email}
-            placeholder="email..."
+            placeholder="email"
             ref={inputRef}
             onChange={e => setEmail(e.target.value)}
           />

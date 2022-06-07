@@ -23,7 +23,7 @@ function Navbar() {
           <div>
             <li>
               <Link to="/">
-                <HomeIcon />
+                <HomeIcon style={{ color: '#2c5784' }} />
               </Link>
             </li>
           </div>
