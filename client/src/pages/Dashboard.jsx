@@ -1,25 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Editor } from '@tinymce/tinymce-react';
 import Note from '../components/Note';
 import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
-import { Link } from 'react-router-dom';
 import '../styles/Dashboard.css';
 
 function Dashboard() {
-  const editorRef = useRef(null);
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [title, setTitle] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const editorRef = useRef(null);
 
-  const save = async e => {
+  const handleTitleChange = e => {
+    e.preventDefault();
+    setTitle(e.target.value);
+  };
+
+  const addNote = async e => {
+    e.preventDefault();
     if (editorRef.current) {
       const content = editorRef.current.getContent();
-      e.preventDefault();
       try {
         const response = await axios.post(
           'http://localhost:4000/api/v1/notes',
@@ -79,18 +84,16 @@ function Dashboard() {
       {isEditing && (
         <>
           <form>
-            <input
-              type="text"
-              placeholder="title"
-              onChange={e => setTitle(e.target.value)}
-            />
+            <input type="text" value={title} onChange={handleTitleChange} />
           </form>
           <Editor
             apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
+            toolbar={
+              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor'
+            }
             onInit={(evt, editor) => (editorRef.current = editor)}
-            // onChange={e => setBody(e.target.value)}
           />
-          <button onClick={save}>Save</button>
+          <button onClick={addNote}>Add note</button>
         </>
       )}
       <>
@@ -113,38 +116,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-// const handleSubmit = async e => {
-//   e.preventDefault();
-//   try {
-//     const response = await axios.post(
-//       'http://localhost:4000/api/v1/notes',
-//       { title, body },
-//       { withCredentials: true }
-//     );
-//     setNotes([
-//       ...notes,
-//       { title: response.data.title, body: response.data.body },
-//     ]);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// {
-//   addNote && (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         placeholder="title"
-//         onChange={e => setTitle(e.target.value)}
-//       />
-//       <input
-//         type="text"
-//         placeholder="body"
-//         onChange={e => setBody(e.target.value)}
-//       />
-//       <button>Add note</button>
-//     </form>
-//   );
-// }

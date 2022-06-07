@@ -1,19 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/Login.css';
 
 function Login() {
-  const navigate = useNavigate();
-  const inputRef = useRef(null);
   const [method_id, setMethod_id] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, [method_id]);
+  const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   const requestOTP = async e => {
     e.preventDefault();
@@ -48,6 +44,11 @@ function Login() {
       setErrorMsg(error.message.msg.error_message);
     }
   };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [method_id]);
+
   return (
     <main className="login-container">
       {!method_id && (
