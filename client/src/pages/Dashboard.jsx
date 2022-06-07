@@ -5,24 +5,32 @@ import Note from '../components/Note';
 import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
+import { Link } from 'react-router-dom';
 import '../styles/Dashboard.css';
 
 function Dashboard() {
   const editorRef = useRef(null);
-
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [addNote, setAddNote] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const save = () => {
+  const save = async e => {
     if (editorRef.current) {
       const content = editorRef.current.getContent();
-
-      // an application would save the editor content to the server here
-      console.log(content);
+      e.preventDefault();
+      try {
+        const response = await axios.post(
+          'http://localhost:4000/api/v1/notes',
+          { title, body: content },
+          { withCredentials: true }
+        );
+        setIsEditing(false);
+        setNotes([...notes, { ...response.data }]);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -66,9 +74,9 @@ function Dashboard() {
   }
 
   return (
-    <div className="dashboard-container">
+    <main className="dashboard-container">
       <h1>Dashboard</h1>
-      {addNote && (
+      {isEditing && (
         <>
           <form>
             <input
@@ -76,7 +84,6 @@ function Dashboard() {
               placeholder="title"
               onChange={e => setTitle(e.target.value)}
             />
-            {title}
           </form>
           <Editor
             apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
@@ -87,21 +94,21 @@ function Dashboard() {
         </>
       )}
       <>
-        {!addNote ? (
-          <AddCircleTwoToneIcon onClick={() => setAddNote(!addNote)} />
+        {!isEditing ? (
+          <AddCircleTwoToneIcon onClick={() => setIsEditing(!isEditing)} />
         ) : (
-          <RemoveCircleTwoToneIcon onClick={() => setAddNote(!addNote)} />
+          <RemoveCircleTwoToneIcon onClick={() => setIsEditing(!isEditing)} />
         )}
       </>
       <div className="notes-container">
         {notes &&
           notes.map(note => (
-            <div key={note.id} className="note-card">
+            <Link to={`/notes/${note.id}`} key={note.id} className="note-card">
               <Note {...note} />
-            </div>
+            </Link>
           ))}
       </div>
-    </div>
+    </main>
   );
 }
 

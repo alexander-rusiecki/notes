@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
-
-function Note({ id, title }) {
+function Note({ title, createdAt }) {
   return (
-    <Link to={`/notes/${id}`}>
+    <div>
       <h3>{title}</h3>
-    </Link>
+      <small className="created-at">created: {createdAt}</small>
+    </div>
   );
 }
 
