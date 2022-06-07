@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Editor } from '@tinymce/tinymce-react';
 import parse from 'html-react-parser';
 import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
+import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/SingleNote.css';
 
 function SingleNote() {
@@ -15,6 +16,7 @@ function SingleNote() {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState('');
   const editorRef = useRef(null);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const handleTitleChange = e => {
@@ -60,6 +62,18 @@ function SingleNote() {
     }
   };
 
+  const handleDelete = async e => {
+    e.preventDefault();
+    try {
+      await axios.delete(`http://localhost:4000/api/v1/notes/${id}`, {
+        withCredentials: true,
+      });
+      navigate('/notes');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getNote();
   }, []);
@@ -93,6 +107,7 @@ function SingleNote() {
         <>
           <h1>{note.title}</h1>
           {parse(note.body)}
+          <DeleteIcon onClick={handleDelete} />
         </>
       ) : (
         <>
