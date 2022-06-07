@@ -15,6 +15,7 @@ function Dashboard() {
   const [title, setTitle] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const editorRef = useRef(null);
+  const inputRef = useRef(null);
 
   const handleTitleChange = e => {
     e.preventDefault();
@@ -58,6 +59,10 @@ function Dashboard() {
     }
   };
 
+  const toggleEditing = () => {
+    setIsEditing(!isEditing);
+  };
+
   useEffect(() => {
     getAllNotes();
   }, []);
@@ -85,12 +90,12 @@ function Dashboard() {
         {!isEditing ? (
           <AddCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em' }}
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={toggleEditing}
           />
         ) : (
           <RemoveCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em' }}
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={toggleEditing}
           />
         )}
       </>
@@ -99,6 +104,7 @@ function Dashboard() {
           <form>
             <label htmlFor="title">Title</label>
             <input
+              ref={inputRef}
               id="title"
               type="text"
               value={title}

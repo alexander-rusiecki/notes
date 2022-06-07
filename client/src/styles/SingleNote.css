@@ -14,11 +14,13 @@
 
 .single-note-card {
   background-color: white;
-  margin-top: 2em;
   border-radius: 3px;
   padding: 1em;
   width: 50%;
   position: relative;
+  box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.38);
+  -webkit-box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.38);
 }
 .single-note-container form {
   margin-top: 2em;

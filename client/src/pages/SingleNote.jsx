@@ -21,8 +21,7 @@ function SingleNote() {
 
   const handleTitleChange = e => {
     e.preventDefault();
-    setNote({ ...note, title: e.target.value });
-    // setTitle(e.target.value);
+    setTitle(e.target.value);
   };
 
   const updateNote = async e => {
@@ -36,7 +35,7 @@ function SingleNote() {
           { withCredentials: true }
         );
         setIsEditing(false);
-        setNote({ ...response.data });
+        setNote(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -57,6 +56,7 @@ function SingleNote() {
         setAuthenticated(true);
         setIsLoading(false);
         setNote(response.data);
+        setTitle(response.data.title);
       }
     } catch (error) {
       console.log(error);
@@ -77,7 +77,6 @@ function SingleNote() {
 
   useEffect(() => {
     getNote();
-    setTitle(note?.title);
   }, []);
 
   if (isLoading) {
@@ -102,12 +101,12 @@ function SingleNote() {
       <>
         {!isEditing ? (
           <AddCircleTwoToneIcon
-            style={{ color: '#2c5784', marginTop: '1em' }}
+            style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
             onClick={() => setIsEditing(!isEditing)}
           />
         ) : (
           <RemoveCircleTwoToneIcon
-            style={{ color: '#2c5784', marginTop: '1em' }}
+            style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
             onClick={() => setIsEditing(!isEditing)}
           />
         )}
@@ -125,7 +124,7 @@ function SingleNote() {
             <input
               id="title"
               type="text"
-              value={note.title}
+              value={title}
               onChange={handleTitleChange}
             />
           </form>
