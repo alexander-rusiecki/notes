@@ -3,7 +3,13 @@ const prisma = new PrismaClient();
 
 const getAllNotes = async (req, res) => {
   try {
-    const allNotes = await prisma.note.findMany();
+    const allNotes = await prisma.note.findMany({
+      orderBy: [
+        {
+          createdAt: 'desc',
+        },
+      ],
+    });
     res.json(allNotes);
   } catch (error) {
     console.log(error);

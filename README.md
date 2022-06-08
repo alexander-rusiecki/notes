@@ -1,6 +1,6 @@
 # Notes
 
-## A fullstack CRUD application with passwordless authentication
+## A fullstack CRUD application with one time password (OTP) authentication
 
 ## Tech stack:
 

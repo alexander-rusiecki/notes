@@ -55,8 +55,7 @@ function Login() {
         <form onSubmit={requestOTP}>
           <h2>Login</h2>
           <p>
-            Please enter your email to get a<span> One Time Password</span> to
-            login
+            Please enter your email to get a<span> One Time Password</span>
           </p>
           <input
             type="email"

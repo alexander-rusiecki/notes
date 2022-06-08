@@ -10,6 +10,7 @@ import '../styles/Dashboard.css';
 
 function Dashboard() {
   const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [title, setTitle] = useState('');
@@ -32,7 +33,7 @@ function Dashboard() {
           { withCredentials: true }
         );
         setIsEditing(false);
-        setNotes([...notes, { ...response.data }]);
+        setNewNote(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -64,7 +65,7 @@ function Dashboard() {
 
   useEffect(() => {
     getAllNotes();
-  }, []);
+  }, [newNote]);
 
   if (isLoading) {
     return (
@@ -77,7 +78,7 @@ function Dashboard() {
   if (!authenticated) {
     return (
       <main className="loading">
-        <h1>You are not authorized 🔐</h1>
+        <h2>You are not authorized 🔐</h2>
       </main>
     );
   }

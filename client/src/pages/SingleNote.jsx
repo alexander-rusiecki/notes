@@ -75,6 +75,10 @@ function SingleNote() {
     }
   };
 
+  const toggleEditing = () => {
+    setIsEditing(prev => !prev);
+  };
+
   useEffect(() => {
     getNote();
   }, []);
@@ -102,12 +106,12 @@ function SingleNote() {
         {!isEditing ? (
           <AddCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={toggleEditing}
           />
         ) : (
           <RemoveCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={toggleEditing}
           />
         )}
       </>
