@@ -8,7 +8,8 @@
 
 - React
 - Axios
-- Draft-js
+- Tinymce-react
+- Html-react-parser
 - Material UI - Icons
 
 ### Backend

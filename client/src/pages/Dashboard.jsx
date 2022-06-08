@@ -15,7 +15,6 @@ function Dashboard() {
   const [title, setTitle] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const editorRef = useRef(null);
-  const inputRef = useRef(null);
 
   const handleTitleChange = e => {
     e.preventDefault();
@@ -60,7 +59,7 @@ function Dashboard() {
   };
 
   const toggleEditing = () => {
-    setIsEditing(!isEditing);
+    setIsEditing(prev => !prev);
   };
 
   useEffect(() => {
@@ -104,7 +103,6 @@ function Dashboard() {
           <form>
             <label htmlFor="title">Title</label>
             <input
-              ref={inputRef}
               id="title"
               type="text"
               value={title}
