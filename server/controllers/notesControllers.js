@@ -12,7 +12,7 @@ const getAllNotes = async (req, res) => {
     });
     res.json(allNotes);
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 
@@ -27,7 +27,7 @@ const createNote = async (req, res) => {
     });
     res.json(newNote);
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 
@@ -46,7 +46,7 @@ const updateNote = async (req, res) => {
     });
     res.json(updatedNote);
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 
@@ -60,7 +60,7 @@ const getNote = async (req, res) => {
     });
     res.json(note);
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 
@@ -74,7 +74,7 @@ const deleteNote = async (req, res) => {
     });
     res.json(deletedNote);
   } catch (error) {
-    console.log(error);
+    res.json({ msg: error });
   }
 };
 

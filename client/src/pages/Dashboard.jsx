@@ -34,6 +34,7 @@ function Dashboard() {
         );
         setIsEditing(false);
         setNewNote(response.data);
+        setTitle('');
       } catch (error) {
         console.log(error);
       }
@@ -70,7 +71,7 @@ function Dashboard() {
   if (isLoading) {
     return (
       <main className="loading">
-        <HourglassTopTwoToneIcon />
+        <HourglassTopTwoToneIcon style={{ color: '#2c5784' }} />
       </main>
     );
   }

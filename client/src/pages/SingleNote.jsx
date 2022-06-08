@@ -4,9 +4,9 @@ import axios from 'axios';
 import { Editor } from '@tinymce/tinymce-react';
 import parse from 'html-react-parser';
 import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
-import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import '../styles/SingleNote.css';
 
 function SingleNote() {
@@ -86,7 +86,7 @@ function SingleNote() {
   if (isLoading) {
     return (
       <main className="loading">
-        <HourglassTopTwoToneIcon />
+        <HourglassTopTwoToneIcon style={{ color: '#2c5784' }} />
       </main>
     );
   }
@@ -104,7 +104,7 @@ function SingleNote() {
       <h2>Read, edit or delete note</h2>
       <>
         {!isEditing ? (
-          <AddCircleTwoToneIcon
+          <EditTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
             onClick={toggleEditing}
           />
@@ -119,7 +119,7 @@ function SingleNote() {
         <div className="single-note-card">
           <h2>{note.title}</h2>
           {parse(note.body)}
-          <DeleteIcon onClick={handleDelete} />
+          <DeleteTwoToneIcon onClick={handleDelete} />
         </div>
       ) : (
         <>
