@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model note {
+model notes {
   id        Int      @id @default(autoincrement())
   title     String   @unique @db.VarChar(255)
   body      String   @db.Text

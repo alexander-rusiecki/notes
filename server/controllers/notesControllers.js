@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 const getAllNotes = async (req, res) => {
   try {
-    const allNotes = await prisma.note.findMany({
+    const allNotes = await prisma.notes.findMany({
       orderBy: [
         {
           createdAt: 'desc',
@@ -19,7 +19,7 @@ const getAllNotes = async (req, res) => {
 const createNote = async (req, res) => {
   try {
     const { title, body } = req.body;
-    const newNote = await prisma.note.create({
+    const newNote = await prisma.notes.create({
       data: {
         title,
         body,
@@ -35,7 +35,7 @@ const updateNote = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, body } = req.body;
-    const updatedNote = await prisma.note.update({
+    const updatedNote = await prisma.notes.update({
       where: {
         id: Number(id),
       },
@@ -53,7 +53,7 @@ const updateNote = async (req, res) => {
 const getNote = async (req, res) => {
   try {
     const { id } = req.params;
-    const note = await prisma.note.findUnique({
+    const note = await prisma.notes.findUnique({
       where: {
         id: Number(id),
       },
@@ -67,7 +67,7 @@ const getNote = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedNote = await prisma.note.delete({
+    const deletedNote = await prisma.notes.delete({
       where: {
         id: Number(id),
       },
