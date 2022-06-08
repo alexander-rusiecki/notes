@@ -135,10 +135,35 @@ function SingleNote() {
           <Editor
             apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
             initialValue={note.body}
-            toolbar={
-              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor'
-            }
             onInit={(evt, editor) => (editorRef.current = editor)}
+            init={{
+              height: 400,
+              plugins: [
+                'advlist',
+                'autolink',
+                'lists',
+                'link',
+                'image',
+                'charmap',
+                'preview',
+                'anchor',
+                'searchreplace',
+                'visualblocks',
+                'code',
+                'fullscreen',
+                'insertdatetime',
+                'media',
+                'table',
+                'code',
+                'help',
+                'wordcount',
+              ],
+              toolbar:
+                'undo redo | blocks | ' +
+                'bold italic forecolor backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            }}
           />
           <button onClick={updateNote}>Update note</button>
         </>
