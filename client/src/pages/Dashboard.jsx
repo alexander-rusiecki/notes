@@ -152,7 +152,7 @@ function Dashboard() {
 
       {notes.length > 0 ? (
         <div className="notes-container">
-          {notes?.map(note => (
+          {notes.map(note => (
             <Link to={`/notes/${note.id}`} key={note.id} className="note-card">
               <Note {...note} />
             </Link>
