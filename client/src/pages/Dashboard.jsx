@@ -150,14 +150,19 @@ function Dashboard() {
         </>
       )}
 
-      <div className="notes-container">
-        {notes &&
-          notes.map(note => (
+      {notes.length > 0 ? (
+        <div className="notes-container">
+          {notes?.map(note => (
             <Link to={`/notes/${note.id}`} key={note.id} className="note-card">
               <Note {...note} />
             </Link>
           ))}
-      </div>
+        </div>
+      ) : (
+        <div className="no-notes">
+          <h3>You have no notes</h3>
+        </div>
+      )}
     </main>
   );
 }
