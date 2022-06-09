@@ -7,7 +7,7 @@ import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
-import '../styles/SingleNote.css';
+import 'styles/singleNote.css';
 
 function SingleNote() {
   const [note, setNote] = useState(null);

@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
 .notes-container {
   margin-top: 9em;
   display: grid;
@@ -16,11 +21,16 @@
 .loading {
   min-height: 80vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .loading h2 {
   font-weight: 400;
+  color: rgb(10, 10, 10);
+}
+.loading h3 {
+  font-weight: 100;
   color: rgb(10, 10, 10);
 }
 

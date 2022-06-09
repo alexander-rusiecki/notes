@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Editor } from '@tinymce/tinymce-react';
-import Note from '../components/Note';
+import Note from 'components/Note';
 import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
-import '../styles/Dashboard.css';
+import 'styles/dashboard.css';
 
 function Dashboard() {
   const [notes, setNotes] = useState([]);
@@ -80,6 +80,9 @@ function Dashboard() {
     return (
       <main className="loading">
         <h2>You are not authorized 🔐</h2>
+        <h3>
+          please <Link to="/login"> login </Link>
+        </h3>
       </main>
     );
   }

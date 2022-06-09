@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import HomeIcon from '@mui/icons-material/Home';
-import '../styles/Navbar.css';
+import 'styles/navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
