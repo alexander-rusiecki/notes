@@ -27,11 +27,11 @@ function SingleNote() {
   const updateNote = async e => {
     e.preventDefault();
     if (editorRef.current) {
-      const content = editorRef.current.getContent();
+      const body = editorRef.current.getContent();
       try {
         const response = await axios.put(
           `http://localhost:4000/api/v1/notes/${id}`,
-          { title, body: content },
+          { title, body },
           { withCredentials: true }
         );
         setIsEditing(false);
@@ -75,9 +75,7 @@ function SingleNote() {
     }
   };
 
-  const toggleEditing = () => {
-    setIsEditing(prev => !prev);
-  };
+  const toggleEditing = () => setIsEditing(prev => !prev);
 
   useEffect(() => {
     getNote();

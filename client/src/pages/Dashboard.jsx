@@ -25,11 +25,11 @@ function Dashboard() {
   const addNote = async e => {
     e.preventDefault();
     if (editorRef.current) {
-      const content = editorRef.current.getContent();
+      const body = editorRef.current.getContent();
       try {
         const response = await axios.post(
           'http://localhost:4000/api/v1/notes',
-          { title, body: content },
+          { title, body },
           { withCredentials: true }
         );
         setIsEditing(false);
@@ -60,9 +60,7 @@ function Dashboard() {
     }
   };
 
-  const toggleEditing = () => {
-    setIsEditing(prev => !prev);
-  };
+  const toggleEditing = () => setIsEditing(prev => !prev);
 
   useEffect(() => {
     getAllNotes();

@@ -5,6 +5,7 @@ import 'styles/navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
+
   const logout = async () => {
     try {
       await axios.delete('http://localhost:4000/api/v1/auth/logout', {
@@ -15,6 +16,7 @@ function Navbar() {
       console.log(error);
     }
   };
+
   return (
     <header>
       <nav>
