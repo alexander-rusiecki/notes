@@ -34,6 +34,18 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+const getLoggedInStatus = (req, res) => {
+  try {
+    const session_token = req.signedCookies['x-stytch-session-token'];
+    if (session_token) {
+      res.json({ isLoggedIn: true });
+    }
+    res.json({ isLoggedIn: false });
+  } catch (error) {
+    res.json({ msg: error });
+  }
+};
+
 const deleteToken = async (req, res) => {
   try {
     const session_token = req.signedCookies['x-stytch-session-token'];
@@ -45,4 +57,4 @@ const deleteToken = async (req, res) => {
   }
 };
 
-module.exports = { sendEmail, verifyEmail, deleteToken };
+module.exports = { sendEmail, verifyEmail, deleteToken, getLoggedInStatus };
