@@ -1,14 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import HourglassTopTwoToneIcon from '@mui/icons-material/HourglassTopTwoTone';
 import 'styles/login.css';
 
 function Login() {
   const [method_id, setMethod_id] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const inputRef = useRef(null);
   const navigate = useNavigate();
 
   const requestOTP = async e => {
@@ -45,9 +47,39 @@ function Login() {
     }
   };
 
+  const getLoggedInStatus = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        'http://localhost:4000/api/v1/auth/get-logged-in-status',
+        { withCredentials: true }
+      );
+      setIsLoggedIn(response.data.isLoggedIn);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    inputRef.current.focus();
-  }, [method_id]);
+    getLoggedInStatus();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <main className="loading">
+        <HourglassTopTwoToneIcon style={{ color: '#2c5784' }} />
+      </main>
+    );
+  }
+
+  if (isLoggedIn) {
+    return (
+      <main className="login-container">
+        <h2>You are logged in 🤙🏼</h2>
+      </main>
+    );
+  }
 
   return (
     <main className="login-container">
@@ -63,7 +95,6 @@ function Login() {
             name="email"
             value={email}
             placeholder="email"
-            ref={inputRef}
             onChange={e => setEmail(e.target.value)}
           />
           <p className="error-message">{errorMsg ? errorMsg : ''}</p>
@@ -82,8 +113,8 @@ function Login() {
               type="number"
               id="otp"
               name="otp"
+              placeholder="one time password"
               value={code}
-              ref={inputRef}
               onChange={e => setCode(e.target.value)}
             />
             <button type="submit">Verify OTP</button>
