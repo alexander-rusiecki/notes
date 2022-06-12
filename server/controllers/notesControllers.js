@@ -58,7 +58,10 @@ const getNote = async (req, res) => {
         id: Number(id),
       },
     });
-    res.json(note);
+    if (note) {
+      return res.json(note);
+    }
+    res.json({ msg: 'Note not found' });
   } catch (error) {
     res.json({ msg: error });
   }

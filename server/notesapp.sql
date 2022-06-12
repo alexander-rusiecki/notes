@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 09, 2022 at 08:00 PM
+-- Generation Time: Jun 12, 2022 at 11:49 AM
 -- Server version: 5.7.34
 -- PHP Version: 7.4.21
 
@@ -29,6 +29,7 @@ USE `notesapp`;
 -- Table structure for table `notes`
 --
 
+DROP TABLE IF EXISTS `notes`;
 CREATE TABLE `notes` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
