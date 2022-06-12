@@ -38,7 +38,7 @@ const getLoggedInStatus = (req, res) => {
   try {
     const session_token = req.signedCookies['x-stytch-session-token'];
     if (session_token) {
-      res.json({ isLoggedIn: true });
+      return res.json({ isLoggedIn: true });
     }
     res.json({ isLoggedIn: false });
   } catch (error) {
