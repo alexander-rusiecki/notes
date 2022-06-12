@@ -16,9 +16,10 @@
   margin-top: 9em;
   background-color: white;
   border-radius: 3px;
-  padding: 1em;
+  padding: 2em;
   width: 100%;
   position: relative;
+  text-align: initial;
   box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.38);
   -webkit-box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.38);
   -moz-box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.38);
@@ -60,6 +61,9 @@
 }
 .single-note-card svg {
   color: '#2c5784';
+}
+.single-note-card h2 {
+  text-align: center;
 }
 
 .single-note-card svg:hover {

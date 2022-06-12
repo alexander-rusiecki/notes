@@ -93,6 +93,8 @@ function Login() {
             type="email"
             id="email"
             name="email"
+            autoFocus
+            required
             value={email}
             placeholder="email"
             onChange={e => setEmail(e.target.value)}
@@ -113,6 +115,8 @@ function Login() {
               type="number"
               id="otp"
               name="otp"
+              autoFocus
+              required
               placeholder="one time password"
               value={code}
               onChange={e => setCode(e.target.value)}

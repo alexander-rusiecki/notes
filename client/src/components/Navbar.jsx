@@ -35,7 +35,12 @@ function Navbar() {
             <li>
               <Link to="/notes">Dashboard</Link>
             </li>
-            <li onClick={logout} className="grey-li">
+            <li
+              onClick={logout}
+              className="grey-li"
+              role="button"
+              aria-label="Logout"
+            >
               Logout
             </li>
           </div>

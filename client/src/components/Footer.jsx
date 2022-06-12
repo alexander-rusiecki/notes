@@ -1,9 +1,11 @@
 import 'styles/footer.css';
 
 function Footer() {
+  const today = new Date();
+
   return (
     <footer>
-      <p>Alexander Rusiecki &copy; 2022</p>
+      <p>Alexander Rusiecki &copy; {today.getFullYear()}</p>
     </footer>
   );
 }

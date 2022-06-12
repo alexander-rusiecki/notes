@@ -52,6 +52,9 @@ function SingleNote() {
       if (response.data.msg?.error_type === 'session_not_found') {
         setAuthenticated(false);
         setIsLoading(false);
+      } else if (response.data?.msg === 'Note not found') {
+        setIsLoading(false);
+        navigate('/notes');
       } else {
         setAuthenticated(true);
         setIsLoading(false);
@@ -105,11 +108,15 @@ function SingleNote() {
           <EditTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
             onClick={toggleEditing}
+            role="button"
+            aria-label="Open editor"
           />
         ) : (
           <RemoveCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em', marginBottom: '2em' }}
             onClick={toggleEditing}
+            role="button"
+            aria-label="Close editor"
           />
         )}
       </>
@@ -117,7 +124,11 @@ function SingleNote() {
         <div className="single-note-card">
           <h2>{note.title}</h2>
           {parse(note.body)}
-          <DeleteTwoToneIcon onClick={handleDelete} />
+          <DeleteTwoToneIcon
+            onClick={handleDelete}
+            role="button"
+            aria-label={`Delete note named ${note.title}`}
+          />
         </div>
       ) : (
         <>
@@ -136,6 +147,7 @@ function SingleNote() {
             onInit={(evt, editor) => (editorRef.current = editor)}
             init={{
               height: 400,
+              auto_focus: true,
               plugins: [
                 'advlist',
                 'autolink',

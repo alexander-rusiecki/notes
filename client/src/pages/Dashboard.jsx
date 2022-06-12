@@ -93,11 +93,15 @@ function Dashboard() {
           <AddCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em' }}
             onClick={toggleEditing}
+            role="button"
+            aria-label="Open editor"
           />
         ) : (
           <RemoveCircleTwoToneIcon
             style={{ color: '#2c5784', marginTop: '1em' }}
             onClick={toggleEditing}
+            role="button"
+            aria-label="Close editor"
           />
         )}
       </>
@@ -117,6 +121,7 @@ function Dashboard() {
             onInit={(evt, editor) => (editorRef.current = editor)}
             init={{
               height: 400,
+              auto_focus: true,
               plugins: [
                 'advlist',
                 'autolink',
@@ -148,7 +153,7 @@ function Dashboard() {
         </>
       )}
 
-      {notes.length > 0 ? (
+      {notes.length ? (
         <div className="notes-container">
           {notes.map(note => (
             <Link to={`/notes/${note.id}`} key={note.id} className="note-card">
